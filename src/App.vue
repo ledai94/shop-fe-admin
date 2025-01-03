@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import { Check } from "@element-plus/icons-vue";
+import { Check } from '@element-plus/icons-vue'
 </script>
 
 <template>
@@ -12,7 +12,7 @@
     </div>
   </div>
   <WelcomeItem></WelcomeItem>
-  <!-- <el-button :icon="Check">this is el ui btn</el-button> -->
+  <el-button :icon="Check">this is el ui btn</el-button>
   <button type="button" class="btn btn-primary">add boostrap</button>
   <div id="carouselExample" class="carousel slide">
     <div class="carousel-inner">
