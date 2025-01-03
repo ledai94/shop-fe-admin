@@ -3,12 +3,14 @@
     <i>
       <slot name="icon"></slot>
     </i>
-    <div class="details">
+    <div class="details test">
+      hi test scss
       <h3>
         <slot name="heading"></slot>
       </h3>
     </div>
   </div>
 </template>
+<script></script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

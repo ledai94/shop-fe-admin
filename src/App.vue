@@ -1,7 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// import { Check } from "@element-plus/icons-vue";
+</script>
 
 <template>
   <header>header</header>
+  <div class="css1">
+    <div class="css1__layer2">
+      <div class="css1__layer2--icon3">
+        <p class="example">this is scss11ssss1</p>
+      </div>
+    </div>
+  </div>
+  <WelcomeItem></WelcomeItem>
+  <!-- <el-button :icon="Check">this is el ui btn</el-button> -->
   <button type="button" class="btn btn-primary">add boostrap</button>
   <div id="carouselExample" class="carousel slide">
     <div class="carousel-inner">
@@ -37,4 +48,4 @@
   <main>main</main>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss"></style>
