@@ -1,0 +1,9 @@
+{
+  "Vue Setup": {
+    "prefix": "vset",
+    "body": [
+      "<template>\n\n</template>\n\n<script setup lang=\"ts\"></script>\n\n<style lang=\"scss\" scoped>\n\n</style>",
+    ],
+    "description": "vue setup snippet",
+  },
+}

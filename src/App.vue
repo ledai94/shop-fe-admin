@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { Check } from '@element-plus/icons-vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <header>header</header>
