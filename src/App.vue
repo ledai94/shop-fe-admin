@@ -1,6 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
+  <header class="mx-2">margin x 20px</header>
   <div class="css1">
     <div class="css1__layer2">
       <div class="css1__layer2--icon3">

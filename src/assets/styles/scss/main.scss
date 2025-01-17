@@ -1,9 +1,11 @@
 // bootstrap 5.2.3
-@import './bootstrap-5.2.3/bootstrap.scss';
-@import './bootstrap-5.2.3/mixins';
-@import './bootstrap-5.2.3/_variables';
+// @import './custom_bs.scss';
 
-@import './mixin';
+@import './bootstrap-5.2.3/bootstrap.scss';
+// @import './bootstrap-5.2.3/mixins';
+// @import './bootstrap-5.2.3/_variables';
 @import './variables';
-@import './fn_each';
+@import './mixin';
+
+// @import './fn_each';
 @import './base.scss';
