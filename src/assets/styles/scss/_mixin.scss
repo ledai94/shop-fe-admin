@@ -1,4 +1,4 @@
-@use './variables' as *;
+@import './variables';
 @mixin text($fw, $fs, $lh, $color: false) {
   font-size: $fs;
   font-weight: $fw;

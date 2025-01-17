@@ -1,4 +1,4 @@
-@use './variables' as *;
+@import './variables';
 
 @font-face {
   font-family: 'Poppins';
@@ -58,6 +58,6 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif !important;
   color: $neutral-600;
 }
