@@ -1,3 +1,8 @@
+// bootstrap 5.2.3
+@use './bootstrap-5.2.3/bootstrap.scss' as *;
+@use './bootstrap-5.2.3/mixins' as *;
+@use './bootstrap-5.2.3/_variables' as *;
+
 @use './mixin' as *;
 @use './variables' as *;
 @use './fn_each' as *;
