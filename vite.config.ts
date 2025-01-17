@@ -17,9 +17,16 @@ export default defineConfig({
       scss: {
         additionalData: `//just variables loaded globally
         // @use '@/assets/styles/scss/variables' as *;
-        // @use "@/assets/styles/scss/main.scss" as *;
-        @import "@/assets/styles/scss/main.scss";
+        @use "@/assets/styles/scss/main.scss" as *;
+        // @import "@/assets/styles/scss/main.scss";
         `,
+        silenceDeprecations: [
+          'mixed-decls',
+          'color-functions',
+          'global-builtin',
+          'import',
+          'abs-percent',
+        ],
       },
     },
   },
