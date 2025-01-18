@@ -7,13 +7,7 @@
     color: $color;
   }
 }
-.d-flex {
-  display: flex;
-}
-.mx-2 {
-  margin-left: 20px !important;
-  margin-right: 20px !important;
-}
+
 .h1-title {
   @include text(600, 28px, 36px);
 }

@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+import { Button } from 'ant-design-vue'
+import WelcomeItem from '@/components/WelcomeItem.vue'
+console.log(ref)
+</script>
 
 <template>
   <header class="mx-2">margin x 20px</header>
@@ -12,7 +17,10 @@
     </div>
   </div>
   <WelcomeItem></WelcomeItem>
-  <button type="button" class="btn btn-primary">add boostrap</button>
+  <Button type="primary" class="btn btn-primary">add boostrap</Button>
+  <a-button type="primary" class="mx-2">with bootstrap class</a-button>
+  <a-button type="primary" class="mx-4">asda</a-button>
+
   <div id="carouselExample" class="carousel slide">
     <div class="carousel-inner">
       <div class="carousel-item active">
