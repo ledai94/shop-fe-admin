@@ -2,7 +2,7 @@
   "Vue Setup": {
     "prefix": "vset",
     "body": [
-      "<template>\n\n</template>\n\n<script setup lang=\"ts\"></script>\n\n<style lang=\"scss\" scoped>\n\n</style>",
+      "<template>\n<div>\n this is new page \n</div>\n</template>\n\n<script setup lang=\"ts\"></script>\n\n<style lang=\"scss\" scoped>\n\n</style>",
     ],
     "description": "vue setup snippet",
   },
