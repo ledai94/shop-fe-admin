@@ -70,7 +70,35 @@ const formState = reactive<FormState>({
   password: '',
 })
 const onLogin = (values: any) => {
-  console.log(baseUrl, values)
+  console.log(baseUrl)
+
+  fetch(baseUrl + '/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: values.username,
+      password: values.password,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        // Handle HTTP errors
+        return response.json().then((errorData) => {
+          throw new Error(errorData.error || 'Login failed')
+        })
+      }
+      console.log(response)
+
+      return response.json() // Parse the JSON data
+    })
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }
 
 const onFinishFailed = (errorInfo: any) => {
