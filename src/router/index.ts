@@ -23,6 +23,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
+    redirect: { name: 'login' },
     component: () => import('@/layouts/AdminLayout.vue'),
     children: [
       {
