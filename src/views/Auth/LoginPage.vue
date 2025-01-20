@@ -69,36 +69,28 @@ const formState = reactive<FormState>({
   username: '',
   password: '',
 })
-const onLogin = (values: any) => {
-  console.log(baseUrl)
+const onLogin = async (values: any) => {
+  try {
+    const response = await fetch(baseUrl + '/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: values.username,
+        password: values.password,
+      }),
+    })
 
-  fetch(baseUrl + '/auth/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email: values.username,
-      password: values.password,
-    }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        // Handle HTTP errors
-        return response.json().then((errorData) => {
-          throw new Error(errorData.error || 'Login failed')
-        })
-      }
-      console.log(response)
+    if (!response.ok) {
+      throw new Error('Login failed')
+    }
 
-      return response.json() // Parse the JSON data
-    })
-    .then((data) => {
-      console.log(data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+    const data = await response.json()
+    console.log(data) // Xử lý dữ liệu
+  } catch (error) {
+    console.error('Error:', error)
+  }
 }
 
 const onFinishFailed = (errorInfo: any) => {
