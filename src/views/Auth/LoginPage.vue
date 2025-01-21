@@ -56,42 +56,39 @@
 <script setup lang="ts">
 import { reactive, computed } from 'vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
+import authService from '@/services/auth'
+
+// import CONFIG from '@/configs/appsetting'
+// use axios direct
+// import axios from 'axios'
+// const baseUrl = CONFIG.BASE_URL
+
+// const onLogin = async (values: any) => {
+//   axios({
+//     method: 'post',
+//     url: `${baseUrl}/auth/login`,
+//     data: {
+//       email: values.username,
+//       password: values.password,
+//     },
+//   })
+//   console.log(values)
+// }
+
+const onLogin = async (values: { username: string; password: string }) => {
+  const data = await authService.login({ email: values.username, password: values.password })
+  console.log(data)
+}
+
 interface FormState {
   username: string
   password: string
 }
 
-const baseUrl = import.meta.env.VITE_BASE_URL
-
-console.log()
-
 const formState = reactive<FormState>({
   username: '',
   password: '',
 })
-const onLogin = async (values: any) => {
-  try {
-    const response = await fetch(baseUrl + '/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: values.username,
-        password: values.password,
-      }),
-    })
-
-    if (!response.ok) {
-      throw new Error('Login failed')
-    }
-
-    const data = await response.json()
-    console.log(data) // Xử lý dữ liệu
-  } catch (error) {
-    console.error('Error:', error)
-  }
-}
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo)
