@@ -1,6 +1,7 @@
 import httpCommon from '@/services/httpCommon'
+import type { UserLogin } from '@/models/auth'
 const authService = {
-  login: async (body: { email: string; password: string }) => {
+  login: async (body: UserLogin) => {
     const response = await httpCommon({
       method: 'POST',
       url: '/auth/login',
@@ -8,14 +9,11 @@ const authService = {
         email: body.email,
         password: body.password,
       },
-      // // test param
-      // params: {
-      //   id: 1,
-      //   search: 'asd',
-      // },
     })
     return response
   },
+
+  refreshTokenFake: async () => {},
 }
 
 export default authService

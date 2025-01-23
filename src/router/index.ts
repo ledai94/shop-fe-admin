@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AuthLayout from '@/layouts/AuthLayout.vue'
-
+import { routerName } from '@/constants/routerName'
 const routes = [
   {
     name: 'auth',
@@ -27,7 +27,7 @@ const routes = [
     component: () => import('@/layouts/AdminLayout.vue'),
     children: [
       {
-        name: 'user-list',
+        name: routerName.userList,
         path: 'user',
         component: () => import('@/views/User/UserPage.vue'),
       },
