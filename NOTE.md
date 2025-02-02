@@ -7,3 +7,7 @@
 -setting route
 
 -cài đặt và config axios
+-setup pinia and handle route
+-login
+-logout
+-register user

@@ -9,21 +9,26 @@ const routes = [
     component: AuthLayout,
     children: [
       {
-        name: 'login',
+        name: routerName.login,
         path: 'login',
         component: () => import('@/views/Auth/LoginPage.vue'),
       },
       {
-        name: 'register',
+        name: routerName.register,
         path: 'register',
         component: () => import('@/views/Auth/RegisterPage.vue'),
+      },
+      {
+        name: routerName.forgot,
+        path: 'forgot',
+        component: () => import('@/views/Auth/ForgotPassword.vue'),
       },
     ],
   },
   {
     path: '/',
-    name: 'home',
-    redirect: { name: 'login' },
+    name: routerName.home,
+    redirect: { name: routerName.login },
     component: () => import('@/layouts/AdminLayout.vue'),
     children: [
       {

@@ -1,11 +1,13 @@
 <template>
-  <RouterLink :to="{ name: 'register' }">redirect to register page</RouterLink> <br />
-  <RouterLink :to="{ name: 'user-list' }">redirect to user page</RouterLink>
-  <div class="login-page">
+  <div class="">
+    <div>
+      <h2 class="mt-4 mb-4">Login Page</h2>
+    </div>
     <a-form
       :model="formState"
+      :layout="'vertical'"
       name="normal_login"
-      class="login-form"
+      class="login-form d-flex flex-column"
       @finish="onLogin"
       @finishFailed="onFinishFailed"
     >
@@ -32,8 +34,8 @@
           </template>
         </a-input-password>
       </a-form-item>
-      <div class="d-flex justify-content-center">
-        <a-form-item>
+      <a-form-item>
+        <div class="d-flex justify-content-between">
           <a-button
             :disabled="disabled"
             type="primary"
@@ -42,12 +44,13 @@
           >
             Log in
           </a-button>
-          Or
-          <a-button @click="handleRegister" href="">register now!</a-button>
-        </a-form-item>
-      </div>
+          <a-button @click="handleRegister">Register now!</a-button>
+        </div>
+      </a-form-item>
       <div class="d-flex justify-content-end">
-        <a class="login-form-forgot" href="">Forgot password</a>
+        <RouterLink :to="{ name: routerName.forgot }">
+          <span>Forgot password</span>
+        </RouterLink>
       </div>
     </a-form>
   </div>
@@ -109,23 +112,8 @@ const disabled = computed(() => {
   return !(formState.email && formState.password)
 })
 const handleRegister = () => {
-  console.log('redirect to register page asdasdsaas')
+  router.push({ name: routerName.register })
 }
 </script>
 
-<style lang="scss" scoped>
-.login-page {
-  background-color: #fff;
-  width: 400px;
-  height: 260px;
-  border-radius: 20px;
-  padding: 20px;
-  position: absolute;
-  top: calc(50%);
-  left: calc(50%);
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>
+<style lang="scss" scoped></style>
