@@ -1,7 +1,5 @@
 <template>
   <div class="auth-layout">
-    this is auth layout
-    <br />
     <div class="auth-form">
       <RouterView></RouterView>
     </div>

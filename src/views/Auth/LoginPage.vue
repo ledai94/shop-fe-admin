@@ -36,6 +36,8 @@
       </a-form-item>
       <a-form-item>
         <div class="d-flex justify-content-between">
+          <a-button @click="handleRegister">Register now!</a-button>
+
           <a-button
             :disabled="disabled"
             type="primary"
@@ -44,14 +46,13 @@
           >
             Log in
           </a-button>
-          <a-button @click="handleRegister">Register now!</a-button>
         </div>
       </a-form-item>
-      <div class="d-flex justify-content-end">
+      <!-- <div class="d-flex justify-content-end">
         <RouterLink :to="{ name: routerName.forgot }">
           <span>Forgot password</span>
         </RouterLink>
-      </div>
+      </div> -->
     </a-form>
   </div>
 </template>
@@ -65,33 +66,17 @@ import type { UserLogin } from '@/models/auth'
 import { ACCESS_TOKEN } from '@/constants/localStorage'
 import { useRouter } from 'vue-router'
 import { routerName } from '@/constants/routerName'
-import { notification } from 'ant-design-vue'
 const router = useRouter()
 
 const onLogin = async (values: UserLogin): Promise<void> => {
-  try {
-    const res = await authService.login({
-      email: values.email,
-      password: values.password,
-    })
-    if (res.data) {
-      const accessToken = res.data.access_token
-      localStorage.setItem(ACCESS_TOKEN, accessToken)
-      router.push({ name: routerName.userList })
-    }
-  } catch (error: any) {
-    if (error.response) {
-      const msg = error.response.data.error || 'Đã xảy ra lỗi'
-      notification['error']({
-        message: 'Đăng nhập thất bại',
-        description: msg,
-      })
-    } else {
-      notification['error']({
-        message: 'Đăng nhập thất bại',
-        description: 'Không thể kết nối đến máy chủ.',
-      })
-    }
+  const res = await authService.login({
+    email: values.email,
+    password: values.password,
+  })
+  if (res.data) {
+    const accessToken = res.data.access_token
+    localStorage.setItem(ACCESS_TOKEN, accessToken)
+    router.push({ name: routerName.userList })
   }
 }
 

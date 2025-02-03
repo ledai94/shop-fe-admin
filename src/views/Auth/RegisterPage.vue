@@ -11,44 +11,28 @@
       <a-form-item
         label="Username"
         name="username"
-        :rules="[{ required: true, message: 'Please input your username!' }]"
+        :rules="[
+          {
+            validator: validator.validatorUsernameAsync,
+          },
+        ]"
       >
         <a-input v-model:value="formState.username"></a-input>
       </a-form-item>
-      <a-form-item
-        label="Email"
-        name="email"
-        :rules="[
-          {
-            required: true,
-            message: 'Please input your email',
-          },
-        ]"
-      >
+      <a-form-item label="Email" name="email">
         <a-input v-model:value="formState.email" />
       </a-form-item>
-      <a-form-item
-        label="Password"
-        name="password"
-        :rules="[{ required: true, message: 'Please input your password' }]"
-      >
-        <a-input-password v-model="formState.password"></a-input-password>
+      <a-form-item label="Password" name="password">
+        <a-input-password v-model:value="formState.password"></a-input-password>
       </a-form-item>
-      <a-form-item
-        label="Password confirm"
-        name="passwordConfirm"
-        :rules="[
-          {
-            required: true,
-            message: 'Please input password confirm',
-          },
-        ]"
-      >
-        <a-input-password v-model="formState.passwordConfirm"></a-input-password>
+      <a-form-item label="Password confirm" name="passwordConfirm">
+        <a-input-password v-model:value="formState.passwordConfirm"></a-input-password>
       </a-form-item>
       <a-form-item>
         <div class="d-flex justify-content-center">
-          <a-button type="primary">Register</a-button>
+          <a-button html-type="submit" type="primary" :disabled="!!disabledRegister"
+            >Register</a-button
+          >
         </div>
       </a-form-item>
       <div class="d-flex justify-content-end">
@@ -59,21 +43,46 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { routerName } from '@/constants/routerName'
 import type { UserRegister } from '@/models/auth'
+import { notification } from 'ant-design-vue'
+import authService from '@/services/auth'
+import { validator } from '@/utils/validator'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
 const formState = reactive<UserRegister>({
   username: undefined,
   email: undefined,
   password: undefined,
   passwordConfirm: undefined,
 })
-const onRegister = () => {
-  console.log('register')
+
+const onRegister = async () => {
+  const res = await authService.register({
+    username: formState.username,
+    email: formState.email,
+    password: formState.password,
+    passwordConfirm: formState.passwordConfirm,
+  })
+  if (res.data) {
+    notification['success']({
+      message: 'Đăng ký thành công',
+      description: 'Vui lòng đăng nhập lại',
+    })
+  }
+  router.push({ name: routerName.login })
 }
 const onRegisterFailed = () => {
   console.log('on register fail')
 }
+
+const disabledRegister = computed(() => {
+  const isValidUsername = validator.validatorUsername(formState.username)
+  return isValidUsername
+})
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,5 +1,6 @@
 import httpCommon from '@/services/httpCommon'
-import type { UserLogin } from '@/models/auth'
+import type { UserLogin, UserRegister } from '@/models/auth'
+
 const authService = {
   login: async (body: UserLogin) => {
     const response = await httpCommon({
@@ -8,6 +9,20 @@ const authService = {
       data: {
         email: body.email,
         password: body.password,
+      },
+    })
+    return response
+  },
+
+  register: async (body: UserRegister) => {
+    const response = await httpCommon({
+      method: 'POST',
+      url: '/auth/signup',
+      data: {
+        email: body.email,
+        name: body.username,
+        password: body.password,
+        password_confirmation: body.passwordConfirm,
       },
     })
     return response
