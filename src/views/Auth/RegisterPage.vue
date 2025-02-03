@@ -30,7 +30,11 @@
       </a-form-item>
       <a-form-item>
         <div class="d-flex justify-content-center">
-          <a-button html-type="submit" type="primary" :disabled="!!disabledRegister"
+          <a-button
+            :loading="loading"
+            html-type="submit"
+            type="primary"
+            :disabled="!!disabledRegister"
             >Register</a-button
           >
         </div>
@@ -43,6 +47,8 @@
 </template>
 
 <script setup lang="ts">
+import { loading } from '@/services/httpCommon'
+
 import { reactive, computed } from 'vue'
 import { routerName } from '@/constants/routerName'
 import type { UserRegister } from '@/models/auth'

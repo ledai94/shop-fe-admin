@@ -7,6 +7,10 @@ import axios, {
 import CONFIG from '@/configs/appSetting'
 import { ACCESS_TOKEN } from '@/constants/localStorage'
 import { notification } from 'ant-design-vue'
+import { ref } from 'vue'
+
+const loading = ref(false)
+
 const instance = axios.create({
   baseURL: CONFIG.BASE_URL,
   timeout: CONFIG.REQUEST_TIMEOUT,
@@ -20,6 +24,7 @@ instance.interceptors.request.use(
         Authorization: `Bearer ${accessToken}`,
       }
     }
+    loading.value = true
     return config as InternalAxiosRequestConfig
   },
   (error: AxiosError): Promise<void> => {
@@ -28,11 +33,13 @@ instance.interceptors.request.use(
 )
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
+    loading.value = false
     return handleResponseResolve(response)
     // return response
   },
   (error: AxiosError) => {
     const data = handleResponseReject(error)
+    loading.value = false
     return Promise.reject(data)
     // return Promise.reject(error)
   },
@@ -57,16 +64,11 @@ const handleResponseReject = (error: AxiosError | any): AxiosError | any => {
   switch (status) {
     case 500:
       notification['error']({
-        message: 'Lỗi serve',
+        message: 'Server Error',
         description: 'Vui lòng thử lại sau',
       })
       break
-    case 404:
-      notification['error']({
-        message: 'Không tìm thấy tài nguyên',
-        description: 'Vui lòng thử lại sau',
-      })
-      break
+
     case 422:
       if (error.response) {
         const errors = error.response.data.errors
@@ -78,13 +80,26 @@ const handleResponseReject = (error: AxiosError | any): AxiosError | any => {
       }
 
       break
+    case 404:
+      notification['error']({
+        message: 'Not Found',
+        description: 'Dữ liệu không tồn tại',
+      })
+      break
+    case 401:
+      notification['error']({
+        message: 'Unauthorized',
+        description: error.response.data.error,
+      })
+
+      break
     default:
       notification['error']({
-        message: 'Có lỗi xảy ra',
+        message: 'Lỗi không xác định',
         description: error.response?.data.message,
       })
   }
   return error
 }
 
-export default instance
+export { instance, loading }

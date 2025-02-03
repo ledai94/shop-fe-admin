@@ -7,7 +7,13 @@
 -setting route
 
 -cài đặt và config axios
--setup pinia and handle route
+
 -login
 -logout
 -register user
+
+-setup pinia and handle route guard
+-click change layout dark light
+
+-cicd deploy project
+fix if error field when create, edit

@@ -1,9 +1,9 @@
-import httpCommon from '@/services/httpCommon'
+import { instance } from '@/services/httpCommon'
 import type { UserLogin, UserRegister } from '@/models/auth'
 
 const authService = {
   login: async (body: UserLogin) => {
-    const response = await httpCommon({
+    const response = await instance({
       method: 'POST',
       url: '/auth/login',
       data: {
@@ -15,7 +15,7 @@ const authService = {
   },
 
   register: async (body: UserRegister) => {
-    const response = await httpCommon({
+    const response = await instance({
       method: 'POST',
       url: '/auth/signup',
       data: {

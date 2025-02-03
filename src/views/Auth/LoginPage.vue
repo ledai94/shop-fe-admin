@@ -36,9 +36,9 @@
       </a-form-item>
       <a-form-item>
         <div class="d-flex justify-content-between">
-          <a-button @click="handleRegister">Register now!</a-button>
-
+          <a-button :loading="loading" @click="handleRegister">Register now!</a-button>
           <a-button
+            :loading="loading"
             :disabled="disabled"
             type="primary"
             html-type="submit"
@@ -66,6 +66,8 @@ import type { UserLogin } from '@/models/auth'
 import { ACCESS_TOKEN } from '@/constants/localStorage'
 import { useRouter } from 'vue-router'
 import { routerName } from '@/constants/routerName'
+import { loading } from '@/services/httpCommon'
+
 const router = useRouter()
 
 const onLogin = async (values: UserLogin): Promise<void> => {
@@ -73,6 +75,7 @@ const onLogin = async (values: UserLogin): Promise<void> => {
     email: values.email,
     password: values.password,
   })
+
   if (res.data) {
     const accessToken = res.data.access_token
     localStorage.setItem(ACCESS_TOKEN, accessToken)
