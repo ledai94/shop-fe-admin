@@ -1,5 +1,5 @@
 <template>
-  <div>user management</div>
+  <div>this is product page</div>
 </template>
 
 <script setup lang="ts"></script>

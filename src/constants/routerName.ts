@@ -4,4 +4,5 @@ export const routerName = {
   login: 'login',
   home: 'home',
   forgot: 'forgot',
+  productList: 'product-list',
 }

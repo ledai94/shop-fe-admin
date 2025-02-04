@@ -79,7 +79,7 @@ const onLogin = async (values: UserLogin): Promise<void> => {
   if (res.data) {
     const accessToken = res.data.access_token
     localStorage.setItem(ACCESS_TOKEN, accessToken)
-    router.push({ name: routerName.userList })
+    router.push({ name: routerName.home })
   }
 }
 

@@ -48,7 +48,6 @@
 
 <script setup lang="ts">
 import { loading } from '@/services/httpCommon'
-
 import { reactive, computed } from 'vue'
 import { routerName } from '@/constants/routerName'
 import type { UserRegister } from '@/models/auth'
