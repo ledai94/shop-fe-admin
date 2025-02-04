@@ -16,5 +16,12 @@
 -click change layout dark light
 -click change ngôn ngữ
 
+-nextTick
+-v-deep
+-css module
+-mixin
+-filter
+
 -cicd deploy project
+-nuxtjs
 fix if error field when create, edit
